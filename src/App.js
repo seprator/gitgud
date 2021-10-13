@@ -58,7 +58,7 @@ const App = () => {
               <label htmlFor="height">height:</label>
               <input
                 id="height"
-                type="text"
+                type="number"
                 value={info.height}
                 placeholder="height"
                 name="height"
@@ -68,7 +68,7 @@ const App = () => {
                 <label htmlFor="length">length:</label>
                 <input
                   id="length"
-                  type="text"
+                  type="number"
                   value={info.length}
                   placeholder="length"
                   name="length"
@@ -78,7 +78,7 @@ const App = () => {
               <label htmlFor="width">width:</label>
               <input
                 id="width"
-                type="text"
+                type="number"
                 value={info.width}
                 placeholder="width"
                 name="width"
@@ -87,7 +87,7 @@ const App = () => {
               <label htmlFor="shippingPrice">shipping price:</label>
               <input
                 id="shippingPrice"
-                type="text"
+                type="number"
                 value={info.shippingPrice}
                 placeholder="shippingPrice"
                 name="shippingPrice"
@@ -96,7 +96,7 @@ const App = () => {
               <label htmlFor="productPrice">product price:</label>
               <input
                 id="productPrice"
-                type="text"
+                type="number"
                 value={info.productPrice}
                 placeholder="productPrice"
                 name="productPrice"
@@ -105,7 +105,7 @@ const App = () => {
               <label htmlFor="productQuantity">product quantity:</label>
               <input
                 id="productQuantity"
-                type="text"
+                type="number"
                 value={info.productQuantity}
                 placeholder="productQuantity"
                 name="productQuantity"
@@ -127,21 +127,19 @@ const App = () => {
               productQuantity,
               shippingPrice,
             } = info;
-            let cbm_el =
-              (info.width * info.height * info.length * info.productQuantity) /
-              1000000;
-            let shippingPrice_el = cbm_el * info.shippingPrice;
-            let productPrice_el = info.productQuantity * info.productPrice;
+            let cbm_el = (width * height * length * productQuantity) / 1000000;
+            let shippingPrice_el = cbm_el * shippingPrice;
+            let productPrice_el = productQuantity * productPrice;
             let total_el = productPrice_el * 1 + shippingPrice_el;
 
             return (
-              <div>
+              <div key={id}>
+                <h4>Product Name: {productName}</h4>
                 <h4>CBM: {cbm_el}</h4>
                 <h4></h4>
-                <h4></h4>
-                <h4></h4>
-                <h4></h4>
-                <h4></h4>
+                <h4>Total Shipping Price: {shippingPrice_el}</h4>
+                <h4>Total Product Price: {productPrice_el}</h4>
+                <h4>Total Price: {total_el}</h4>
               </div>
             );
           })}
