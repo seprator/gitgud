@@ -1,0 +1,97 @@
+/* ----------- Global CSS | intab.io ------------ */
+div.pdiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  height: 30%;
+  padding: 1rem;
+  margin: 2rem;
+  margin-left: nullpx;
+  margin-right: nullpx;
+  text-align: left;
+  font-size: 2rem;
+  line-height: 20px;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  background: #009688;
+  border: 5px solid #000000;
+  border-radius: 46px;
+  box-shadow: 11px 8px 28px 9px #000000;
+}
+/* ----------- Global CSS | intab.io ------------ */
+div.div_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 350px;
+  margin: 1rem;
+  line-height: 0px;
+  letter-spacing: 0px;
+  font-family: sans-serif;
+  background: #FFEB3B;
+  border: 2px solid #000000;
+  border-radius: 20px;
+  opacity: 0.8;
+  box-shadow: 5px 5px 7px 3px #000000;
+  font-size: 1rem;
+  word-spacing: 0px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 480px;
+  margin: 1rem;
+  font-family: serif;
+  font-weight: 800;
+}
+
+div.div2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 280px;
+}
+
+label {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: flex;
+  width: 300px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 1rem;
+  line-height: 15px;
+  font-family: monospace;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid #767676;
+  border-radius: 12px;
+  box-shadow: 1px 2px 4px 3px #000000;
+}
+
+button {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin: 3rem;
+  font-size: 2rem;
+  line-height: 29px;
+  border: 8px solid #767676;
+  border-radius: 21px;
+  box-shadow: 4px 3px 7px 5px #000000;
+}
+

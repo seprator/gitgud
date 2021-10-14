@@ -18,6 +18,7 @@ const App = () => {
     let value = e.target.value;
     setInfo({ ...info, [name]: value });
   };
+  console.log(display);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -64,17 +65,17 @@ const App = () => {
                 name="height"
                 onChange={handleChange}
               />
-              <div>
-                <label htmlFor="length">length:</label>
-                <input
-                  id="length"
-                  type="number"
-                  value={info.length}
-                  placeholder="length"
-                  name="length"
-                  onChange={handleChange}
-                />
-              </div>
+
+              <label htmlFor="length">length:</label>
+              <input
+                id="length"
+                type="number"
+                value={info.length}
+                placeholder="length"
+                name="length"
+                onChange={handleChange}
+              />
+
               <label htmlFor="width">width:</label>
               <input
                 id="width"
@@ -128,18 +129,21 @@ const App = () => {
               shippingPrice,
             } = info;
             let cbm_el = (width * height * length * productQuantity) / 1000000;
+            let single_cbm_el = (width * height * length) / 1000000;
+            let single_shipping_el = single_cbm_el * shippingPrice;
             let shippingPrice_el = cbm_el * shippingPrice;
             let productPrice_el = productQuantity * productPrice;
             let total_el = productPrice_el * 1 + shippingPrice_el;
 
             return (
-              <div key={id}>
+              <div key={id} className="div_info">
                 <h4>Product Name: {productName}</h4>
-                <h4>CBM: {cbm_el}</h4>
-                <h4></h4>
-                <h4>Total Shipping Price: {shippingPrice_el}</h4>
-                <h4>Total Product Price: {productPrice_el}</h4>
-                <h4>Total Price: {total_el}</h4>
+                <h4>CBM: {cbm_el}m</h4>
+                <h4>Shipping For One Item: {single_shipping_el}$</h4>
+                <h4>One Product With Shipping: {single_cbm_el}$</h4>
+                <h4>Total Shipping: {shippingPrice_el}$</h4>
+                <h4>Total Products: {productPrice_el}$</h4>
+                <h4>Total Price: {total_el}$</h4>
               </div>
             );
           })}
