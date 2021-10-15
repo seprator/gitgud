@@ -147,19 +147,21 @@ const App = () => {
             let shippingPrice_el = cbm_el * shippingPrice;
             let productPrice_el = productQuantity * productPrice;
             let total_el = productPrice_el * 1 + shippingPrice_el;
+           let singleIS = 1 * productPrice + single_shipping_el;
 
-            return (
-              <div key={id} className="divinfo">
-                <h4>Product Name: {productName}</h4>
-                <h4>CBM: {cbm_el}m</h4>
-                <h4>Shipping For One Item: {single_shipping_el}$</h4>
-                <h4>One Product With Shipping: {single_cbm_el}$</h4>
-                <h4>Total Shipping: {shippingPrice_el}$</h4>
-                <h4>Total Products: {productPrice_el}$</h4>
-                <h4>Total Price: {total_el}$</h4>
-                <button onClick={() => remove(id)}>delete</button>
-              </div>
-            );
+           return (
+             <div key={id} className="divinfo">
+               <h4>Product Name: {productName}</h4>
+               <h4>CBM: {cbm_el}m</h4>
+               <h4>One Product CBM: {single_cbm_el}m</h4>
+               <h4>Shipping For One Item: {single_shipping_el}$</h4>
+               <h4>Single Item With Shipping: {singleIS}$</h4>
+               <h4>Total Shipping: {shippingPrice_el}$</h4>
+               <h4>Total Products: {productPrice_el}$</h4>
+               <h4>Total Price: {total_el}$</h4>
+               <button onClick={() => remove(id)}>delete</button>
+             </div>
+           );
           })}
         </div>
         <div />
