@@ -41,6 +41,12 @@ const App = () => {
       });
     }
   };
+  const remove = (id) => {
+    const removedDisplay = display.filter((removed) => removed.id !== id);
+    setDisplay(removedDisplay);
+  };
+
+  console.log(display);
   return (
     <>
       <div className="pdiv">
@@ -113,11 +119,18 @@ const App = () => {
                 onChange={handleChange}
               />
               <button onClick={handleSubmit}>Calculate</button>
+              <button
+                onClick={() => {
+                  setDisplay([]);
+                }}
+              >
+                Delete All
+              </button>
             </form>
           </article>
         </div>
         <div className="div2">
-          {display.map((info) => {
+          {display.map((infoss) => {
             const {
               id,
               length,
@@ -127,7 +140,7 @@ const App = () => {
               productPrice,
               productQuantity,
               shippingPrice,
-            } = info;
+            } = infoss;
             let cbm_el = (width * height * length * productQuantity) / 1000000;
             let single_cbm_el = (width * height * length) / 1000000;
             let single_shipping_el = single_cbm_el * shippingPrice;
@@ -136,7 +149,7 @@ const App = () => {
             let total_el = productPrice_el * 1 + shippingPrice_el;
 
             return (
-              <div key={id} className="div_info">
+              <div key={id} className="divinfo">
                 <h4>Product Name: {productName}</h4>
                 <h4>CBM: {cbm_el}m</h4>
                 <h4>Shipping For One Item: {single_shipping_el}$</h4>
@@ -144,6 +157,7 @@ const App = () => {
                 <h4>Total Shipping: {shippingPrice_el}$</h4>
                 <h4>Total Products: {productPrice_el}$</h4>
                 <h4>Total Price: {total_el}$</h4>
+                <button onClick={() => remove(id)}>delete</button>
               </div>
             );
           })}
