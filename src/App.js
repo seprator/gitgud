@@ -1,16 +1,21 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 const App = () => {
+  useEffect(() => {
+    const rdisplay = localStorage.getItem("display");
+    const pdisplay = JSON.parse(rdisplay);
+    setDisplay(pdisplay);
+  }, []);
   const [info, setInfo] = useState({
-    productName: null,
-    height: null,
-    length: null,
-    width: null,
-    shippingPrice: null,
-    productPrice: null,
-    productQuantity: null,
+    productName: "",
+    height: "",
+    length: "",
+    width: "",
+    shippingPrice: "",
+    productPrice: "",
+    productQuantity: "",
   });
   const [display, setDisplay] = useState([]);
   const handleChange = (e) => {
@@ -18,9 +23,10 @@ const App = () => {
     let value = e.target.value;
     setInfo({ ...info, [name]: value });
   };
-  console.log(display);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       info.height &&
       info.length &&
@@ -46,7 +52,11 @@ const App = () => {
     setDisplay(removedDisplay);
   };
 
-  console.log(display);
+  useEffect(() => {
+    const sdisplay = JSON.stringify(display);
+    localStorage.setItem("display", sdisplay);
+  });
+  console.log(localStorage.getItem("display"));
   return (
     <>
       <div className="pdiv">
@@ -118,9 +128,16 @@ const App = () => {
                 name="productQuantity"
                 onChange={handleChange}
               />
-              <button onClick={handleSubmit}>Calculate</button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                Calculate
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
                   setDisplay([]);
                 }}
               >
@@ -147,21 +164,21 @@ const App = () => {
             let shippingPrice_el = cbm_el * shippingPrice;
             let productPrice_el = productQuantity * productPrice;
             let total_el = productPrice_el * 1 + shippingPrice_el;
-           let singleIS = 1 * productPrice + single_shipping_el;
+            let singleIS = 1 * productPrice + single_shipping_el;
 
-           return (
-             <div key={id} className="divinfo">
-               <h4>Product Name: {productName}</h4>
-               <h4>CBM: {cbm_el}m</h4>
-               <h4>One Product CBM: {single_cbm_el}m</h4>
-               <h4>Shipping For One Item: {single_shipping_el}$</h4>
-               <h4>Single Item With Shipping: {singleIS}$</h4>
-               <h4>Total Shipping: {shippingPrice_el}$</h4>
-               <h4>Total Products: {productPrice_el}$</h4>
-               <h4>Total Price: {total_el}$</h4>
-               <button onClick={() => remove(id)}>delete</button>
-             </div>
-           );
+            return (
+              <div key={id} className="divinfo">
+                <h4>Product Name: {productName}</h4>
+                <h4>CBM: {cbm_el}m</h4>
+                <h4>One Product CBM: {single_cbm_el}m</h4>
+                <h4>Shipping For One Item: {single_shipping_el}$</h4>
+                <h4>Single Item With Shipping: {singleIS}$</h4>
+                <h4>Total Shipping: {shippingPrice_el}$</h4>
+                <h4>Total Products: {productPrice_el}$</h4>
+                <h4>Total Price: {total_el}$</h4>
+                <button onClick={() => remove(id)}>delete</button>
+              </div>
+            );
           })}
         </div>
         <div />
