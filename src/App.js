@@ -3,11 +3,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 const App = () => {
-  useEffect(() => {
-    const rdisplay = localStorage.getItem("display");
-    const pdisplay = JSON.parse(rdisplay);
-    setDisplay(pdisplay);
-  }, []);
+
   const [info, setInfo] = useState({
     productName: "",
     height: "",
@@ -23,7 +19,16 @@ const App = () => {
     let value = e.target.value;
     setInfo({ ...info, [name]: value });
   };
-
+  useEffect(() => {
+    const rdisplay = localStorage.getItem("display");
+    if (rdisplay) {
+      const pdisplay = JSON.parse(rdisplay);
+      setDisplay(pdisplay);
+    } else {
+      const pdisplay = [];
+      setDisplay(pdisplay);
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
